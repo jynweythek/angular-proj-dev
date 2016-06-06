@@ -1,0 +1,23 @@
+tbody>tr:hover {
+    background-color: lightgrey;
+}
+.dyn-edit span {
+    cursor: pointer;
+}
+.dyn-edit input {
+    display: none;
+}
+
+.dyn-edit.active span {
+    display: none;
+}
+
+.dyn-edit.active input {
+    display: inline-block;
+}
+.row {
+    margin-top: 20px;
+}
+.container{
+    margin-bottom: 20px;
+}

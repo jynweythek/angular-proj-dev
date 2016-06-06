@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cabinet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</head>
+<body ng-app="cabinet">
+    <div class="container" ng-controller="CabinetController">
+        <div class="row">
+            <div class="col-lg-6">
+                <input type="text" class="form-control" ng-model="query" placeholder="Start type...">
+            </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Skype</th>
+              <th>Group</th>
+              <th>Phone</th>
+              <th>Status</th>
+              <th>Manage</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="student in students | filter:query">
+              <td>{{$index + 1}}</td>
+              <td><img ng-src="{{student.photoURL}}" width="100"></td>
+              <td><dyn-edit value="student.name">{{student.name}}</dyn-edit></td>
+              <td><dyn-edit value="student.surname">{{student.surname}}</dyn-edit></td>
+              <td><dyn-edit value="student.skype">{{student.skype}}</dyn-edit></td>
+              <td><dyn-edit value="student.group">{{student.group}}</dyn-edit></td>
+              <td><dyn-edit value="student.phone">{{student.phone}}</dyn-edit></td>
+              <td><dyn-edit type="checkbox" value="student.status">{{student.status}}</dyn-edit></td>
+              <td><button class="btn btn-danger" ng-click="remove(student)">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+             <form ng-show="visible" ng-submit="newStudent()">
+            <tr>
+                <td><input type="file" ng-model="photo" placeholder="Photo" ng-required/></td>
+                <td><input type="text" ng-model="name" placeholder="Name" ng-required/></td>
+                <td><input type="text" ng-model="surname" placeholder="Surname" ng-required/></td>
+                <td><input type="text" ng-model="skype" placeholder="Skype" ng-required/></td>
+                <td><input type="text" ng-model="group" placeholder="Group" ng-required/></td>
+                <td><input type="tel" ng-model="phone" placeholder="Phone" ng-required/></td>
+                <td><input type="checkbox" ng-model="status" placeholder="Status" ng-required/>Active</td>
+            </tr>
+            <input class="btn btn-success" type="submit">
+        </form>
+        <input type="button" class="btn btn-primary" ng-click="visible = true" value="Add new">
+        <button ng-click="save()">Save</button>
+    </div>
+    </div>
+</body>
+</html>
